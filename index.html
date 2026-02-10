@@ -15,8 +15,8 @@
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       background: linear-gradient(135deg, #fff0f5, #ffe4e1, #f8bbd0);
       background-size: 300% 300%;
-      animation: bgMove 14s ease infinite;
-      min-height: 100vh;
+      animation: bgMove 16s ease infinite;
+      min-height: 100dvh;
       overflow-x: hidden;
       display: flex;
       flex-direction: column;
@@ -35,38 +35,43 @@
 
     h1 {
       color: #c2185b;
-      font-size: clamp(1.9rem, 7vw, 3.2rem);
-      text-shadow: 0 3px 12px rgba(194,24,91,0.35);
-      margin: 1.5rem 0 2rem;
+      font-size: clamp(2rem, 9vw, 3.8rem);
+      text-shadow: 0 3px 14px rgba(194, 24, 91, 0.4);
+      margin: 1.5rem 0 2.2rem;
       text-align: center;
-      line-height: 1.15;
-      animation: pulseTitle 2.8s infinite;
+      line-height: 1.18;
+      animation: pulseTitle 3s infinite ease-in-out;
     }
 
     @keyframes pulseTitle {
-      0%,100% { transform: scale(1); }
-      50%     { transform: scale(1.04); }
+      0%, 100% { transform: scale(1); }
+      50%      { transform: scale(1.04); }
+    }
+
+    .container {
+      position: relative;
+      width: 100%;
+      max-width: 520px;
+      padding: 0 1rem;
     }
 
     .buttons {
-      position: relative;
       display: flex;
       flex-wrap: wrap;
-      gap: 2.5rem;
+      gap: 2rem;
       justify-content: center;
-      width: 100%;
-      max-width: 500px;
-      margin: 1rem 0;
+      margin: 1.5rem 0;
     }
 
     button {
-      font-size: clamp(1.3rem, 5vw, 1.9rem);
-      padding: clamp(0.9rem, 4vw, 1.2rem) clamp(2.2rem, 8vw, 3.5rem);
+      font-size: clamp(1.4rem, 6vw, 2.1rem);
+      font-weight: 700;
+      padding: 1rem 2.8rem;
       border: none;
       border-radius: 999px;
       cursor: pointer;
-      transition: all 0.28s ease;
-      box-shadow: 0 5px 18px rgba(0,0,0,0.18);
+      transition: all 0.25s ease;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.18);
       touch-action: manipulation;
       user-select: none;
       -webkit-tap-highlight-color: transparent;
@@ -75,115 +80,114 @@
     #yes {
       background: linear-gradient(45deg, #ff4081, #f50057);
       color: white;
-      font-weight: 700;
-      animation: gentleBounce 3.2s infinite;
+      animation: gentleBounce 3.4s infinite ease-in-out;
+      min-width: 160px;
       flex: 1 1 45%;
-      min-width: 140px;
     }
 
-    @keyframes gentleBounce {
-      0%,100% { transform: translateY(0); }
-      50%     { transform: translateY(-10px); }
-    }
-
+    #yes:hover,
     #yes:active {
       transform: scale(1.08) translateY(-4px);
+      box-shadow: 0 10px 28px rgba(245, 0, 87, 0.45);
     }
 
     #no {
       background: linear-gradient(45deg, #78909c, #607d8b);
       color: white;
+      min-width: 160px;
       flex: 1 1 45%;
-      min-width: 140px;
     }
 
     #no.shake {
-      animation: shake 0.45s;
+      animation: shake 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+    }
+
+    @keyframes gentleBounce {
+      0%, 100% { transform: translateY(0); }
+      50%      { transform: translateY(-12px); }
     }
 
     @keyframes shake {
-      0% { transform: translate(1px, 1px) rotate(0deg); }
-      10% { transform: translate(-1px, -2px) rotate(-1deg); }
-      20% { transform: translate(-3px, 0px) rotate(1deg); }
-      30% { transform: translate(3px, 2px) rotate(0deg); }
-      40% { transform: translate(1px, -1px) rotate(1deg); }
-      50% { transform: translate(-1px, 2px) rotate(-1deg); }
-      60% { transform: translate(-3px, 1px) rotate(0deg); }
-      70% { transform: translate(3px, 1px) rotate(-1deg); }
-      80% { transform: translate(-1px, -1px) rotate(1deg); }
-      90% { transform: translate(1px, 2px) rotate(0deg); }
-      100% { transform: translate(1px, -2px) rotate(-1deg); }
+      10%, 90% { transform: translate3d(-2px, 0, 0); }
+      20%, 80% { transform: translate3d(4px, 0, 0); }
+      30%, 50%, 70% { transform: translate3d(-6px, 0, 0); }
+      40%, 60% { transform: translate3d(6px, 0, 0); }
     }
 
     .message {
-      margin-top: 1.5rem;
-      font-size: clamp(1.4rem, 5vw, 2rem);
+      min-height: 3.5rem;
+      margin-top: 1.8rem;
+      font-size: clamp(1.5rem, 6vw, 2.2rem);
       color: #ad1457;
       font-weight: 600;
-      min-height: 3rem;
       text-align: center;
-      line-height: 1.3;
-      text-shadow: 0 2px 6px rgba(173,20,87,0.25);
+      line-height: 1.35;
+      text-shadow: 0 2px 8px rgba(173, 20, 87, 0.3);
     }
 
     .heart {
       position: absolute;
-      font-size: clamp(1.8rem, 6vw, 3rem);
+      font-size: clamp(1.8rem, 7vw, 3.2rem);
       pointer-events: none;
       animation: floatHeart linear forwards;
-      opacity: 0.9;
+      opacity: 0.92;
+      z-index: 10;
     }
 
     @keyframes floatHeart {
-      0%   { transform: translateY(120vh) scale(0.4) rotate(0deg); opacity: 0.6; }
-      20%  { opacity: 1; }
-      100% { transform: translateY(-30vh) scale(1.4) rotate(360deg); opacity: 0; }
+      0%   { transform: translateY(110vh) scale(0.3) rotate(0deg); opacity: 0.5; }
+      15%  { opacity: 1; }
+      100% { transform: translateY(-40vh) scale(1.5) rotate(420deg); opacity: 0; }
     }
 
     .sparkle {
       position: absolute;
-      width: 8px;
-      height: 8px;
+      width: 10px;
+      height: 10px;
       background: white;
       border-radius: 50%;
-      box-shadow: 0 0 12px white;
+      box-shadow: 0 0 14px 4px white;
       pointer-events: none;
-      animation: sparkleAnim 1.8s forwards;
+      animation: sparkleAnim 1.6s forwards;
+      z-index: 5;
     }
 
     @keyframes sparkleAnim {
       0%   { transform: scale(0) rotate(0deg); opacity: 0; }
-      40%  { transform: scale(1.3) rotate(180deg); opacity: 1; }
+      50%  { transform: scale(1.4) rotate(180deg); opacity: 1; }
       100% { transform: scale(0) rotate(360deg); opacity: 0; }
     }
 
-    @media (max-width: 500px) {
+    @media (max-width: 520px) {
       .buttons {
-        gap: 1.5rem;
         flex-direction: column;
+        gap: 1.6rem;
       }
       button {
-        width: 80%;
+        width: 86%;
         margin: 0 auto;
+        padding: 1.1rem 2rem;
       }
     }
   </style>
 </head>
 <body>
 
-  <h1>Vrei să fii ubitica mia de velantains dei? 💕✨</h1>
+  <div class="container">
+    <h1>Vrei să fii Valentina mea? 💕✨</h1>
 
-  <div class="buttons">
-    <button id="yes">DA 😍💖</button>
-    <button id="no">NU 😢</button>
+    <div class="buttons">
+      <button id="yes">DA 😍💖</button>
+      <button id="no">NU 😢</button>
+    </div>
+
+    <div class="message" id="message"></div>
   </div>
-
-  <div class="message" id="message"></div>
 
   <script>
     const noButton = document.getElementById('no');
     const yesButton = document.getElementById('yes');
-    const message = document.getElementById('message');
+    const messageEl = document.getElementById('message');
 
     const noPhrases = [
       "Ești sigură?",
@@ -203,57 +207,60 @@
     function createHeart() {
       const heart = document.createElement('div');
       heart.className = 'heart';
-      heart.innerHTML = ['💗','💖','💕','💓','💞','❤️'][Math.floor(Math.random()*6)];
+      heart.textContent = ['💗','💖','💕','💓','💞','❤️'][Math.floor(Math.random()*6)];
       heart.style.left = Math.random() * 100 + 'vw';
-      heart.style.animationDuration = (Math.random() * 5 + 6) + 's';
-      heart.style.animationDelay = Math.random() * 0.6 + 's';
+      heart.style.animationDuration = (Math.random() * 6 + 7) + 's';
+      heart.style.animationDelay = Math.random() * 0.8 + 's';
       document.body.appendChild(heart);
-      setTimeout(() => heart.remove(), 10000);
+      setTimeout(() => heart.remove(), 14000);
     }
 
     function createSparkle(x, y) {
       const s = document.createElement('div');
       s.className = 'sparkle';
       s.style.left = x + 'px';
-      s.style.top = y + 'px';
+      s.style.top  = y + 'px';
       document.body.appendChild(s);
-      setTimeout(() => s.remove(), 2000);
+      setTimeout(() => s.remove(), 1800);
     }
 
     function confettiBurst() {
-      for(let i = 0; i < 80; i++) {
+      for (let i = 0; i < 100; i++) {
         setTimeout(() => {
           const x = Math.random() * window.innerWidth;
-          const y = Math.random() * window.innerHeight * 0.6;
+          const y = Math.random() * window.innerHeight * 0.7;
           createSparkle(x, y);
-        }, i * 30);
+        }, i * 24);
       }
     }
 
     noButton.addEventListener('click', () => {
       noClickCount++;
 
+      // Shake animation
       noButton.classList.remove('shake');
-      void noButton.offsetWidth;
+      void noButton.offsetWidth; // force reflow
       noButton.classList.add('shake');
 
-      const scale = 1 + noClickCount * 0.42;
-      yesButton.style.transform = `scale(${scale})`;
-      yesButton.style.padding = `${clamp(0.9,4,1.2) + noClickCount * 0.6}rem ${clamp(2.2,8,3.5) + noClickCount * 1.2}rem`;
-      yesButton.style.fontSize = `${clamp(1.3,5,1.9) + noClickCount * 0.3}rem`;
+      // Grow YES button
+      const growFactor = 1 + noClickCount * 0.38;
+      yesButton.style.transform = `scale(${growFactor})`;
+      yesButton.style.padding = `${1 + noClickCount * 0.5}rem ${2.8 + noClickCount * 1.1}rem`;
+      yesButton.style.fontSize = `${1.4 + noClickCount * 0.35}rem`;
 
-      if (noClickCount <= noPhrases.length) {
-        message.innerHTML = noPhrases[noClickCount - 1];
-      } else {
-        message.textContent = "Deja plâng... dar tot te vreau 🥹";
-      }
+      // Message
+      messageEl.textContent = noClickCount <= noPhrases.length
+        ? noPhrases[noClickCount - 1]
+        : "Deja plâng... dar tot te vreau 🥹💔";
 
-      const x = (Math.random() - 0.5) * 300;
-      const y = (Math.random() - 0.5) * 180;
+      // Move NO button randomly
+      const x = (Math.random() - 0.5) * 280;
+      const y = (Math.random() - 0.5) * 160;
       noButton.style.transform = `translate(${x}px, ${y}px)`;
 
-      for(let i = 0; i < 5 + noClickCount * 2; i++) {
-        setTimeout(createHeart, i * 80);
+      // Hearts explosion
+      for (let i = 0; i < 6 + noClickCount * 2; i++) {
+        setTimeout(createHeart, i * 70);
       }
     });
 
@@ -262,53 +269,51 @@
 
       document.body.innerHTML = `
         <div style="
-          height: 100vh;
+          height: 100dvh;
           display: flex;
           flex-direction: column;
           align-items: center;
           justify-content: center;
           background: linear-gradient(135deg, #ff9a9e, #fecfef, #fad0c4);
           background-size: 400% 400%;
-          animation: bgMove 9s ease infinite;
+          animation: bgMove 10s ease infinite;
           color: white;
           text-align: center;
           overflow: hidden;
-          padding: 1rem;
+          padding: 1.5rem;
         ">
           <h1 style="
-            font-size: clamp(3.5rem, 12vw, 7rem);
+            font-size: clamp(4rem, 14vw, 8rem);
             margin: 0;
-            text-shadow: 0 6px 30px rgba(0,0,0,0.5);
-            animation: pulseTitle 1.8s infinite;
+            text-shadow: 0 8px 40px rgba(0,0,0,0.55);
+            animation: pulseTitle 2s infinite;
           ">
             YEEEEES! 🥰💖💥
           </h1>
           <p style="
-            font-size: clamp(2.2rem, 8vw, 4.5rem);
-            margin: 2rem 0;
-            text-shadow: 0 4px 20px rgba(0,0,0,0.4);
+            font-size: clamp(2.4rem, 9vw, 5rem);
+            margin: 2.5rem 0;
+            text-shadow: 0 5px 25px rgba(0,0,0,0.5);
           ">
             Te iubesc enorm de mult, ubitica miaaaa! ❤️🔥
           </p>
-          <div style="font-size: clamp(3rem, 12vw, 8rem); animation: gentleBounce 2s infinite;">
+          <div style="
+            font-size: clamp(3.5rem, 14vw, 9rem);
+            animation: gentleBounce 2.4s infinite;
+          ">
             💞 💗 💕 💓 💖 💝
           </div>
         </div>
       `;
 
-      setInterval(createHeart, 300);
+      // Continuous hearts after YES
+      setInterval(createHeart, 280);
     });
 
     // Gentle background hearts
     setInterval(() => {
-      if (Math.random() > 0.6) createHeart();
-    }, 1400);
-
-    // Helper clamp function for JS (since clamp() is CSS-only)
-    function clamp(min, preferred, max) {
-      const val = preferred / 100 * window.innerWidth / 16; // rough rem approximation
-      return Math.max(min, Math.min(max, val));
-    }
+      if (Math.random() > 0.55) createHeart();
+    }, 1600);
   </script>
 
 </body>
